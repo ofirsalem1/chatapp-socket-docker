@@ -10,8 +10,9 @@ function App() {
   const [messages, setMessages]: [usersConnected: any, setUsersConnected: any] = useState([]);
   useEffect(() => {
     socketRef.current = io('http://localhost:4000');
-    socketRef.current.on('message', data => {
-      console.log('message', data);
+    socketRef.current.on('message', messageInfo => {
+      console.log('message', messageInfo);
+      setMessages((prev: any) => [...prev, `${messageInfo.name}: ${messageInfo.message}`]);
     });
     socketRef.current.on('usersLogin', data => {
       setUsersConnected(data);
