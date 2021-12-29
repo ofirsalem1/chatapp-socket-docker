@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ChatScreen = ({ usersConnected }: { usersConnected: any }) => {
+const ChatScreen = ({ usersConnected, messages }: { usersConnected: any; messages: any }) => {
   return (
     <div className="chat-screen-div">
       <div className="users-list">
@@ -8,6 +8,13 @@ const ChatScreen = ({ usersConnected }: { usersConnected: any }) => {
         <ul>
           {usersConnected.map((user: any, i: any) => {
             return <li key={i}>{user}</li>;
+          })}
+        </ul>
+      </div>
+      <div className="messages-div">
+        <ul>
+          {messages.map((message: any, i: any) => {
+            return <li key={i}>{message}</li>;
           })}
         </ul>
       </div>

@@ -7,6 +7,7 @@ import { ServerToClientEvents, ClientToServerEvents } from '../../../back/@types
 function App() {
   const socketRef = useRef<Socket<ServerToClientEvents, ClientToServerEvents>>();
   const [usersConnected, setUsersConnected]: [usersConnected: any, setUsersConnected: any] = useState([]);
+  const [messages, setMessages]: [usersConnected: any, setUsersConnected: any] = useState([]);
   useEffect(() => {
     socketRef.current = io('http://localhost:4000');
     socketRef.current.on('message', data => {
@@ -15,13 +16,16 @@ function App() {
     socketRef.current.on('usersLogin', data => {
       setUsersConnected(data);
     });
-    // socketRef.current.on('message', data =)
+    socketRef.current.on('userConnected', data => {
+      console.log(data);
+      setMessages((prev: any) => [...prev, data]);
+    });
   }, []);
 
   return (
     <div className="App">
       <h1>Chat App</h1>
-      <ChatScreen usersConnected={usersConnected} />
+      <ChatScreen usersConnected={usersConnected} messages={messages} />
       <MessageForm socketRef={socketRef} />
     </div>
   );

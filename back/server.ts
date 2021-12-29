@@ -16,6 +16,7 @@ io.on('connection', socket => {
   //   io.emit('userConnected', 'user connected');
   usersArr.push(socket.id);
   io.emit('usersLogin', usersArr);
+  io.emit('userConnected', `${socket.id} is connected`);
 
   socket.on('message', message => {
     console.log(message);
