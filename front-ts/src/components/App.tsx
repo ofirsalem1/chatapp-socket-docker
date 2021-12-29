@@ -11,7 +11,6 @@ function App() {
   useEffect(() => {
     socketRef.current = io('http://localhost:4000');
     socketRef.current.on('message', messageInfo => {
-      console.log('message', messageInfo);
       setMessages((prev: any) => [...prev, `${messageInfo.name}: ${messageInfo.message}`]);
     });
     socketRef.current.on('usersLogin', data => {

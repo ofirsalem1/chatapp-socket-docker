@@ -8,9 +8,6 @@ import { usersArr } from './db/usersDb';
 const app = express();
 const httpServer = createServer(app);
 const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(httpServer);
-// const io = new Server(httpServer, {
-//   /* options */
-// });
 
 io.on('connection', socket => {
   //   io.emit('userConnected', 'user connected');
@@ -19,9 +16,12 @@ io.on('connection', socket => {
   io.emit('userConnected', `${socket.id} is connected`);
 
   socket.on('message', message => {
-    console.log(message);
-
-    io.emit('message', message);
+    if (message.room) {
+      message.name = `privet ${message.name}`;
+      io.to(message.room).emit('message', message);
+    } else {
+      io.emit('message', message);
+    }
   });
 
   socket.on('disconnect', () => {

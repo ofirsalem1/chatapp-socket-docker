@@ -9,7 +9,8 @@ interface ServerToClientEvents {
 }
 
 interface ClientToServerEvents {
-  message: (message: { name: string; message: string }) => void;
+  message: (message: { name: string; message: string; room: string | undefined }) => void;
+  directMessage: (message: { name: string; message: string }, room: string) => void;
 }
 
 interface InterServerEvents {
