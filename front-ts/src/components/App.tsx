@@ -13,7 +13,6 @@ function App() {
       console.log('message', data);
     });
     socketRef.current.on('usersLogin', data => {
-      console.log('usersLogin', data);
       setUsersConnected(data);
     });
     // socketRef.current.on('message', data =)
