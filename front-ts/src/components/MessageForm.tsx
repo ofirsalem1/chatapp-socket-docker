@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { io, Socket } from 'socket.io-client';
-import { ServerToClientEvents, ClientToServerEvents } from '../@types/socketTypes';
+import { ServerToClientEvents, ClientToServerEvents } from '../../../back/@types/socketTypes';
 
 const MessageForm = () => {
   const [messageInfo, setMessageInfo] = useState({ name: '', message: '' });
@@ -10,9 +10,9 @@ const MessageForm = () => {
     socketRef.current.on('message', data => {
       console.log(data);
     });
-    // socketRef.current.on('message', data => {
-    //   console.log('message', data);
-    // });
+    socketRef.current.on('usersLogin', data => {
+      console.log('usersLogin', data);
+    });
     // socketRef.current.on('message', data =)
   }, []);
 

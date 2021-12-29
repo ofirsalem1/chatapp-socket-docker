@@ -3,6 +3,7 @@ interface ServerToClientEvents {
   //   basicEmit: (a: number, b: string, c: Buffer) => void;
   //   withAck: (d: string, callback: (e: number) => void) => void;
   message: (message: { name: string; message: string }) => void;
+  usersLogin: (usersArr: string[]) => void;
 }
 
 interface ClientToServerEvents {

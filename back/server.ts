@@ -4,7 +4,7 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData } from './@types/socketTypes';
-
+import { usersArr } from './db/usersDb';
 const app = express();
 const httpServer = createServer(app);
 const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(httpServer);
@@ -14,6 +14,9 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEve
 
 io.on('connection', socket => {
   //   io.emit('userConnected', 'user connected');
+  usersArr.push(socket.id);
+  io.emit('usersLogin', usersArr);
+
   socket.on('message', message => {
     console.log(message);
     io.emit('message', message);
@@ -21,6 +24,8 @@ io.on('connection', socket => {
 
   socket.on('disconnect', () => {
     io.emit('message', { name: 'ofir', message: 'here' });
+    const userIndex = usersArr.indexOf(socket.id); // delete the user that disconnected
+    usersArr.splice(userIndex, 1);
   });
 });
 
