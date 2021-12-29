@@ -4,6 +4,7 @@ interface ServerToClientEvents {
   //   withAck: (d: string, callback: (e: number) => void) => void;
   message: (message: { name: string; message: string }) => void;
   userConnected: (message: string) => void;
+  userDisconnected: (message: string) => void;
   usersLogin: (usersArr: string[]) => void;
 }
 

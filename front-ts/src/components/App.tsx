@@ -16,9 +16,11 @@ function App() {
     socketRef.current.on('usersLogin', data => {
       setUsersConnected(data);
     });
-    socketRef.current.on('userConnected', data => {
-      console.log(data);
-      setMessages((prev: any) => [...prev, data]);
+    socketRef.current.on('userConnected', message => {
+      setMessages((prev: any) => [...prev, message]);
+    });
+    socketRef.current.on('userDisconnected', message => {
+      setMessages((prev: any) => [...prev, message]);
     });
   }, []);
 

@@ -27,6 +27,7 @@ io.on('connection', socket => {
     const userIndex = usersArr.indexOf(socket.id); // delete the user that disconnected
     usersArr.splice(userIndex, 1);
     io.emit('usersLogin', usersArr);
+    io.emit('userDisconnected', `${socket.id} is disconnected`);
   });
 });
 
