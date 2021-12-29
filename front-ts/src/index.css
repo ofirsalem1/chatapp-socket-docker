@@ -20,3 +20,12 @@ label {
 .users-list {
   border: blue solid 2px;
 }
+.messages-div ul {
+  text-align: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.messages-div {
+  width: 100%;
+}
