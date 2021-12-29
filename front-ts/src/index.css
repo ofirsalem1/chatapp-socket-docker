@@ -1,0 +1,17 @@
+body {
+  text-align: center;
+}
+label {
+  display: block;
+}
+.send-message-btn {
+  display: block;
+  margin: 1rem auto;
+}
+.chat-screen-div {
+  border: solid black 2px;
+  height: 13rem;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
