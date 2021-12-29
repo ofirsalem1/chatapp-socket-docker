@@ -1,20 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { io, Socket } from 'socket.io-client';
-import { ServerToClientEvents, ClientToServerEvents } from '../../../back/@types/socketTypes';
+import { Socket } from 'socket.io-client';
+import { ClientToServerEvents, ServerToClientEvents } from '../../../back/@types/socketTypes';
 
-const MessageForm = () => {
+const MessageForm = ({ socketRef }: { socketRef: React.MutableRefObject<Socket<ServerToClientEvents, ClientToServerEvents> | undefined> }) => {
   const [messageInfo, setMessageInfo] = useState({ name: '', message: '' });
-  const socketRef = useRef<Socket<ServerToClientEvents, ClientToServerEvents>>();
-  useEffect(() => {
-    socketRef.current = io('http://localhost:4000');
-    socketRef.current.on('message', data => {
-      console.log(data);
-    });
-    socketRef.current.on('usersLogin', data => {
-      console.log('usersLogin', data);
-    });
-    // socketRef.current.on('message', data =)
-  }, []);
 
   const handleChange = (e: any) => {
     setMessageInfo({ ...messageInfo, [e.target.name]: e.target.value });

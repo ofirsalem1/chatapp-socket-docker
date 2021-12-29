@@ -14,4 +14,9 @@ label {
   width: 80%;
   margin: 0 auto;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.users-list {
+  border: blue solid 2px;
 }
