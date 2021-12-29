@@ -18,6 +18,7 @@ io.on('connection', socket => {
   socket.on('message', message => {
     if (message.room) {
       message.name = `privet ${message.name}`;
+      socket.emit('message', message);
       io.to(message.room).emit('message', message);
     } else {
       io.emit('message', message);
