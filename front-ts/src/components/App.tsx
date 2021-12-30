@@ -3,13 +3,14 @@ import MessageForm from './MessageForm';
 import { io, Socket } from 'socket.io-client';
 import { useState, useEffect, useRef } from 'react';
 import { ServerToClientEvents, ClientToServerEvents } from '../../../back/@types/socketTypes';
+import { AppProvider } from '../contexts/AppContext';
 
 function App() {
   const socketRef = useRef<Socket<ServerToClientEvents, ClientToServerEvents>>();
   const [usersConnected, setUsersConnected]: [usersConnected: any, setUsersConnected: any] = useState([]);
   const [messages, setMessages]: [usersConnected: any, setUsersConnected: any] = useState([]);
   useEffect(() => {
-    socketRef.current = io('http://localhost:4000');
+    socketRef.current = io('http://localhost:4000', { auth: { user: 'user' } });
     socketRef.current.on('message', messageInfo => {
       setMessages((prev: any) => [...prev, `${messageInfo.name}: ${messageInfo.message}`]);
     });
@@ -25,11 +26,13 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Chat App</h1>
-      <ChatScreen usersConnected={usersConnected} messages={messages} />
-      <MessageForm socketRef={socketRef} />
-    </div>
+    <AppProvider>
+      <div className="App">
+        <h1>Chat App</h1>
+        <ChatScreen usersConnected={usersConnected} messages={messages} />
+        <MessageForm socketRef={socketRef} />
+      </div>
+    </AppProvider>
   );
 }
 

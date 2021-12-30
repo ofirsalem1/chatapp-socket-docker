@@ -1,8 +1,12 @@
-import React from 'react';
+import { useContext } from 'react';
+import { AppContext } from '../contexts/AppContext';
 
 const ChatScreen = ({ usersConnected, messages }: { usersConnected: any; messages: any }) => {
+  const { state, dispatch } = useContext(AppContext);
   const handleClick = (e: any) => {
-    console.log(e.target.innerText);
+    console.log(state);
+    dispatch({ type: 'CHOOSE_ROOM', room: e.target.innerText });
+    console.log(state);
   };
 
   return (
