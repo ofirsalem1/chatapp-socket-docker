@@ -6,7 +6,6 @@ const ChatScreen = () => {
   const handleClick = (e: any) => {
     // dispatch({ type: 'CHOOSE_ROOM', room: e.target.innerText });
   };
-  console.log(state.messages);
 
   return (
     <div className="chat-screen-div">

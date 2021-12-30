@@ -1,13 +1,17 @@
 // Importing module
 
 import express from 'express';
-import { createServer } from 'http';
+// import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData } from './@types/socketTypes';
 import { usersArr } from './db/usersDb';
 const app = express();
-const httpServer = createServer(app);
-const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(httpServer);
+// const httpServer = createServer(app);
+const server = app.listen(4000, () => {
+  console.log('listening...');
+});
+
+const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(server);
 
 io.on('connection', socket => {
   //   io.emit('userConnected', 'user connected');
@@ -34,8 +38,4 @@ io.on('connection', socket => {
     io.emit('usersLogin', usersArr);
     io.emit('userDisconnected', `${socket.id} is disconnected`);
   });
-});
-
-httpServer.listen(4000, () => {
-  console.log('listening...');
 });
