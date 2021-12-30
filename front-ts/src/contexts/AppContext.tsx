@@ -2,7 +2,7 @@ import { createContext, useReducer, Dispatch } from 'react';
 import { appReducer } from '../reducers/appReducer';
 
 const initialState = {
-  usersConnected: [],
+  onlineUsers: [],
   messages: [],
 };
 

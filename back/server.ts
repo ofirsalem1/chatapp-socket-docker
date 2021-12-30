@@ -12,7 +12,7 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEve
 io.on('connection', socket => {
   //   io.emit('userConnected', 'user connected');
   const userName = socket.handshake.auth.user;
-  console.log(userName);
+  // console.log(userName);
 
   usersArr.push(socket.id);
   io.emit('usersLogin', usersArr);

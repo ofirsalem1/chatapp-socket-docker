@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { AppContext } from '../contexts/AppContext';
 
-const ChatScreen = ({ usersConnected, messages }: { usersConnected: any; messages: any }) => {
+const ChatScreen = ({ messages }: { messages: any }) => {
   const { state, dispatch } = useContext(AppContext);
   const handleClick = (e: any) => {
-    console.log(state);
-    dispatch({ type: 'CHOOSE_ROOM', room: e.target.innerText });
-    console.log(state);
+    // console.log(state);
+    // dispatch({ type: 'CHOOSE_ROOM', room: e.target.innerText });
+    // console.log(state);
   };
 
   return (
@@ -14,7 +14,7 @@ const ChatScreen = ({ usersConnected, messages }: { usersConnected: any; message
       <div className="users-list">
         <h3>Users connected</h3>
         <ul>
-          {usersConnected.map((user: any, i: any) => {
+          {state.onlineUsers.map((user: any, i: any) => {
             return (
               <li key={i} onClick={handleClick}>
                 {user}
