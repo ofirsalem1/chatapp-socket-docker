@@ -1,4 +1,5 @@
 import { createContext, useReducer, Dispatch } from 'react';
+import { IState } from '../@types/socketTypes';
 import { appReducer } from '../reducers/appReducer';
 
 const initialState = {

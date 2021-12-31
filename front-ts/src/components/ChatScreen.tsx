@@ -9,10 +9,10 @@ const ChatScreen = () => {
 
   return (
     <div className="chat-screen-div">
-      <div className="users-list">
+      <div className="users-list-div">
         <h3>Users connected</h3>
-        <ul>
-          {state.onlineUsers.map((user: any, i: any) => {
+        <ul className="list">
+          {state.onlineUsers.map((user: string, i: number) => {
             return (
               <li key={i} onClick={handleClick}>
                 {user}
@@ -22,8 +22,8 @@ const ChatScreen = () => {
         </ul>
       </div>
       <div className="messages-div">
-        <ul>
-          {state.messages.map((message: any, i: any) => {
+        <ul className="list">
+          {state.messages.map((message: string, i: number) => {
             return <li key={i}>{message}</li>;
           })}
         </ul>
