@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  background: rgba(224, 252, 253, 0.5);
 }
 label {
   display: block;
@@ -17,15 +18,25 @@ label {
   display: flex;
   flex-direction: row-reverse;
 }
-.users-list {
+.users-list-div {
   border: blue solid 2px;
+  width: 100%;
+  overflow-y: auto;
 }
 .messages-div ul {
   text-align: left;
   list-style: none;
   margin: 0;
   padding: 0;
+  width: 50%;
 }
 .messages-div {
   width: 100%;
+  overflow-y: auto;
 }
+li {
+  overflow-wrap: break-word;
+}
+/* .list {
+  height: 100%;
+} */
